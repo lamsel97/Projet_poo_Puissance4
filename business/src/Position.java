@@ -3,6 +3,9 @@ public class Position {
     private int colonne;
 
     public Position(int ligne, int colonne) {
+        if (ligne < 0 || colonne < 0) {
+            throw new IllegalArgumentException("Les lignes ou colonnes ne peuvent pas être en dessous de 0");
+        }
         this.ligne = ligne;
         this.colonne = colonne;
     }
