@@ -8,6 +8,7 @@ public class Jeton {
     }
 
     public Couleur getCouleur() {
+
         return couleur;
     }
 
