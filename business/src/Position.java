@@ -1,5 +1,3 @@
-import java.util.Objects;
-
 public class Position {
     private int ligne;
     private int colonne;
