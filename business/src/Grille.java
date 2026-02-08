@@ -71,7 +71,7 @@ public class Grille {
                 || alignementDiagonal2(position, couleur) >= 4;
     }
 
-    private int alignementHorizontal (Position position, Couleur couleur){
+    private int alignementHorizontal(Position position, Couleur couleur) {
         int ligne = position.ligne;
         int colonne = position.colonne;
         int nbAlignes = 1;
