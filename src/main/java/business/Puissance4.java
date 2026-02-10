@@ -31,29 +31,24 @@ public class Puissance4 {
         Grille grille = puissance4.getGrille();
         Joueur joueurCourant = puissance4.getJoueurCourant();
 
-        // Création du jeton du joueur courant
         Jeton jeton = new Jeton(joueurCourant.getNom());
 
-        // Insertion du jeton
         int ligne = grille.insererJeton(jeton, numColonne);
 
-        // Position du dernier jeton joué
         Position position = new Position(ligne, numColonne);
 
-        // Vérification victoire
         if (grille.alignementRealise(position)) {
             puissance4.setGagnant(joueurCourant);
             puissance4.setPartieFinie(true);
             return;
         }
 
-        // Vérification match nul
         if (grille.isFullGrille()) {
+            puissance4.setGagnant(joueurCourant);
             puissance4.setPartieFinie(true);
             return;
         }
 
-        // Changement de joueur
         puissance4.changerJoueurCourant();
     }
 

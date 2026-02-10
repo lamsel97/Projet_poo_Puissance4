@@ -43,18 +43,19 @@ public class Grille {
             throw new IllegalArgumentException("La colonne est invalide");
         }
 
-        if (plateauJetons[NB_LIGNES - 1][numColonne] != null) {
-            throw new Puissance4Exception("La colonne est remplie");
+        int ligne = NB_LIGNES - 1;
+        while (ligne >= 0 && plateauJetons[ligne][numColonne] != null) {
+            ligne--;
         }
 
-        int ligne = 0;
-        while (ligne < NB_LIGNES && plateauJetons[ligne][numColonne] != null) {
-            ligne++;
+        if (ligne < 0) {
+            throw new Puissance4Exception("La colonne est remplie");
         }
 
         plateauJetons[ligne][numColonne] = jeton;
         return ligne;
     }
+
 
     public boolean isFullColonne(int numColonne) {
         if (numColonne < 0 || numColonne >= NB_COLONNES) {

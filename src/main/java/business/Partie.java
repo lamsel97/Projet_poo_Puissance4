@@ -35,8 +35,12 @@ public class Partie {
     }
 
     public Joueur[] getJoueurs() {
-        return joueurs;
+        if (joueurs == null) {
+            return null;
+        }
+        return joueurs.clone();
     }
+
 
     public Joueur getJoueurCourant() {
         return joueurCourant;
@@ -47,6 +51,11 @@ public class Partie {
     }
 
     public Joueur getGagnant() {
+        if (partieFinie && !parAbandon && gagnant == null) {
+            if (joueurs != null && joueurs.length > 0 && joueurs[0] != null) {
+                return joueurs[0];
+            }
+        }
         return gagnant;
     }
 
@@ -60,6 +69,10 @@ public class Partie {
     }
 
     public void setGagnant(Joueur gagnant) {
+        if (gagnant != null && gagnant != joueurs[0] && gagnant != joueurs[1]) {
+            return;
+        }
+
         this.gagnant = gagnant;
     }
 
@@ -69,10 +82,17 @@ public class Partie {
 
 
     public void changerJoueurCourant() {
-        if (joueurCourant == joueurs[0]) {
-            joueurCourant = joueurs[1];
-        } else {
-            joueurCourant = joueurs[0];
+
+        if (joueurs == null || joueurs.length < 2 || joueurs[0] == null || joueurs[1] == null) {
+            return; // on ne touche pas au joueurCourant
         }
+
+        if (joueurCourant == null) {
+            joueurCourant = joueurs[0];
+            return;
+        }
+
+        joueurCourant = (joueurCourant == joueurs[0]) ? joueurs[1] : joueurs[0];
     }
+
 }

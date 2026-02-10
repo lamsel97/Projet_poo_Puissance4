@@ -35,9 +35,9 @@ public class Mainview {
 
         System.out.println("\nGrille de jeu :");
 
-        for (int ligne = Config.NB_LIGNES - 1; ligne >= 0; ligne--) {
+        for (int ligne = 0; ligne < Grille.NB_LIGNES; ligne++) {
             System.out.print("| ");
-            for (int col = 0; col < Config.NB_COLONNES; col++) {
+            for (int col = 0; col < Grille.NB_COLONNES; col++) {
                 Jeton jeton = grille.getJetons(new Position(ligne, col));
                 if (jeton == null) {
                     System.out.print(". ");
