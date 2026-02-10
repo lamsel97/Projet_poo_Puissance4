@@ -65,6 +65,8 @@ public class Grille {
             return false;
         }
 
+        Couleur couleur = jeton.getCouleur();
+
         return alignementHorizontal(position, couleur) >= 4
                 || alignementVertical(position, couleur) >= 4
                 || alignementDiagonal1(position, couleur) >= 4
@@ -92,4 +94,80 @@ public class Grille {
 
         return nbAlignes;
     }
+
+    private int alignementVertical(Position position, Couleur couleur) {
+        int ligne = position.ligne;
+        int colonne = position.colonne;
+        int nbAlignes = 1;
+
+        // vers le bas
+        int l = ligne - 1;
+        while (l >= 0 && grille[l][colonne] == couleur) {
+            nbAlignes++;
+            l--;
+        }
+
+        // vers le haut
+        l = ligne + 1;
+        while (l < NB_LIGNES && grille[l][colonne] == couleur) {
+            nbAlignes++;
+            l++;
+        }
+
+        return nbAlignes;
+    }
+
+    private int alignementDiagonal1(Position position, Couleur couleur) {
+        int ligne = position.ligne;
+        int colonne = position.colonne;
+        int nbAlignes = 1;
+
+        // vers le bas-gauche
+        int l = ligne - 1;
+        int c = colonne - 1;
+        while (l >= 0 && c >= 0 && grille[l][c] == couleur) {
+            nbAlignes++;
+            l--;
+            c--;
+        }
+
+        // vers le haut-droite
+        l = ligne + 1;
+        c = colonne + 1;
+        while (l < NB_LIGNES && c < NB_COLONNES && grille[l][c] == couleur) {
+            nbAlignes++;
+            l++;
+            c++;
+        }
+
+        return nbAlignes;
+    }
+
+    private int alignementDiagonal2(Position position, Couleur couleur) {
+        int ligne = position.ligne;
+        int colonne = position.colonne;
+        int nbAlignes = 1;
+
+        // vers le haut-gauche
+        int l = ligne + 1;
+        int c = colonne - 1;
+        while (l < NB_LIGNES && c >= 0 && grille[l][c] == couleur) {
+            nbAlignes++;
+            l++;
+            c--;
+        }
+
+        // vers le bas-droite
+        l = ligne - 1;
+        c = colonne + 1;
+        while (l >= 0 && c < NB_COLONNES && grille[l][c] == couleur) {
+            nbAlignes++;
+            l--;
+            c++;
+        }
+
+        return nbAlignes;
+    }
+
+
 }
